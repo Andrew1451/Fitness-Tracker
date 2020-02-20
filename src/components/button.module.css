@@ -1,0 +1,28 @@
+.Button {
+    width: 45%;
+    height: fit-content;
+    border: 1px solid lime;
+    background-color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 2px; 
+    font-size: 14px;
+    cursor: pointer;
+    color: lime;
+    padding: 7px;
+}
+
+
+
+/* .Button {
+    width: 30%;
+    height: fit-content;
+    border: 1px solid lime;
+    background-color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    color: lime;
+    padding: 7px;
+    display: inline-flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 2px; 
+} */

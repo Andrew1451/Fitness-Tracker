@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../components/input';
+import Button from '../components/button';
 import classes from './form.module.css';
 
 const Form = props => {
@@ -56,6 +57,10 @@ const Form = props => {
                     changed={(e) => inputChangedHandler(e, input.id)}
                 />
             ))}
+            <div className={classes.SpreadButtons}>
+                <Button>Save Exercise</Button>
+                <Button>Save Workout</Button>
+            </div>
         </form>
     )
 }

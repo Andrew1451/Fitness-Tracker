@@ -1,7 +1,21 @@
 .Form {
+    width: 95%;
+    border: 1px solid lime;
+    padding: 32px;
+    border-radius: 5px;
+    margin: 17% auto;
+}
+
+.SpreadButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 49px;
+}
+
+/* .Form {
     width: 60%;
     border: 1px solid lime;
     padding: 50px;
     border-radius: 5px;
     margin: 0 auto;
-}
+} */

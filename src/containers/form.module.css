@@ -12,6 +12,12 @@
     margin-top: 49px;
 }
 
+@media (min-width: 550px) {
+    .Form {
+        width: 60%;
+    }
+}
+
 /* .Form {
     width: 60%;
     border: 1px solid lime;

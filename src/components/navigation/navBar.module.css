@@ -1,0 +1,8 @@
+.NavBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    padding: 7px;
+    width: 100%;
+}

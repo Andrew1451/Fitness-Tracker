@@ -12,7 +12,19 @@
     margin-top: 49px;
 }
 
+/* @media (orientation: landscape) {
+    .Form {
+        max-width: 250px;
+    }
+} */
+
 @media (min-width: 550px) {
+    .Form {
+        width: 70%;
+    }
+}
+
+@media (min-width: 760px) {
     .Form {
         width: 60%;
     }

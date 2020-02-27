@@ -1,0 +1,10 @@
+.Logo {
+    font-size: 29px;
+    text-align: center;
+    margin: 1.45rem 0;
+}
+
+.Logo a {
+    text-decoration: none;
+    color: lime;
+}

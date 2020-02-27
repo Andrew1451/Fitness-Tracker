@@ -1,0 +1,19 @@
+.NavigationItem {
+    box-sizing: border-box;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.NavigationItem a {
+    box-sizing: border-box;
+    text-decoration: none;
+    display: block;
+    color: lime;
+    width: 100%;
+}
+
+.NavigationItem a:active,
+.NavigationItem a:hover {
+    border-bottom: 1px solid lime;
+}

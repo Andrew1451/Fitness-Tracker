@@ -1,0 +1,30 @@
+.SideDrawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 59%;
+    z-index: 100;
+    padding: 20px;
+    padding-top: 50px;
+    height: 25%;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    background-color: black;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+}
+
+.Open {
+    transform: translateY(0)
+}
+
+.Close {
+    transform: translateY(-100%);
+}
+
+@media (min-width: 500px) {
+    .SideDrawer {
+        display: none;
+    }
+}

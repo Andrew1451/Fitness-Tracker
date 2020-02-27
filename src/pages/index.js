@@ -15,10 +15,10 @@ const IndexPage = () => (
       <label style={{color: 'lime', fontFamily: 'Helvetica', display: 'block'}} for='repsNumber'>Number of Reps</label>
       <input type='text' id='repsNumber' name='repsNumber' placeholder='Number of Reps'></input>
     </form> */}
-    <Link style={{
+    {/* <Link style={{
       position: 'absolute',
       bottom: '10%'
-    }} to="/page-2/">Go to page 2</Link>
+    }} to="/page-2/">Go to page 2</Link> */}
   </Layout>
 )
 

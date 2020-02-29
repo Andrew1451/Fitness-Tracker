@@ -21,6 +21,7 @@
 @media (min-width: 550px) {
     .Form {
         width: 70%;
+        margin: 150px auto;
     }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from "./sideDrawer.module.css"
 import NavigationItems from "./navigationItems"
+import MenuButton from "./menuButton"
 
 const SideDrawer = props => {
     let attachedClasses = [classes.SideDrawer, classes.Close];
@@ -8,11 +9,14 @@ const SideDrawer = props => {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
     return (
-        <div className={attachedClasses.join(' ')}>
-            <nav>
-                <NavigationItems />
-            </nav>
-        </div>
+        <>
+            <MenuButton clicked={props.sideDrawerToggled} open={props.open} />
+            <div className={attachedClasses.join(' ')}>
+                <nav>
+                    <NavigationItems />
+                </nav>
+            </div>
+        </>
     );
 }
     

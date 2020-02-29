@@ -1,9 +1,14 @@
 import React from "react"
-import MenuButton from "./menuButton"
+// import MenuButton from "./menuButton"
+import Logo from "../ui/logo"
+import classes from "./navBar.module.css"
+import NavigationItems from "./navigationItems"
 
 const NavBar = props => (
-    <div>
-        <MenuButton clicked={props.sideDrawerClicked} open={props.open} />
+    <div className={classes.NavBar}>
+        <Logo />
+        {/* <MenuButton clicked={props.sideDrawerToggled} open={props.open} /> */}
+        <NavigationItems />
     </div>
 );
 

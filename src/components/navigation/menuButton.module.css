@@ -3,8 +3,8 @@
     width: 30px;
     padding: 0;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 19px;
+    right: 19px;
     box-sizing: border-box;
     z-index: 200;
 }
@@ -45,4 +45,10 @@
 
 .MenuButton div:nth-child(4).Open {
     visibility: hidden;
+}
+
+@media (min-width: 650px) {
+    .MenuButton {
+        display: none;
+    }
 }

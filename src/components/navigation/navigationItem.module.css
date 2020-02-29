@@ -1,19 +1,22 @@
 .NavigationItem {
     box-sizing: border-box;
     display: block;
-    margin: 10px 0;
-    width: 100%;
+    margin: 12px;
+    width: fit-content;
 }
 
 .NavigationItem a {
     box-sizing: border-box;
     text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
     display: block;
     color: lime;
     width: 100%;
 }
-
+/* 
 .NavigationItem a:active,
 .NavigationItem a:hover {
     border-bottom: 1px solid lime;
-}
+} */

@@ -2,11 +2,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 59%;
+    width: fit-content;
     z-index: 100;
-    padding: 20px;
-    padding-top: 50px;
-    height: 25%;
+    padding: 50px 29px 15px 29px;
+    height: fit-content;
     font-family: Helvetica, Arial, sans-serif;
     font-weight: 500;
     font-size: 21px;
@@ -20,10 +19,10 @@
 }
 
 .Close {
-    transform: translateY(-100%);
+    transform: translateY(-140%);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 650px) {
     .SideDrawer {
         display: none;
     }

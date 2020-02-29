@@ -1,8 +1,19 @@
 .NavBar {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    padding: 7px;
-    width: 100%;
+    display: none;
+
+}
+
+@media (min-width: 650px) {
+    .NavBar {
+        display: flex;
+        top: 12px;
+        right: 0;
+        height: 55px;
+        border-bottom: 1px solid lime;
+        padding: 10px;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

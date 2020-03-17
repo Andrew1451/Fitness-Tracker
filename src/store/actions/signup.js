@@ -26,3 +26,9 @@ export const signup = (email, password) => {
         dispatch(signupStart())
     }
 }
+
+export const signin = () => {
+    return {
+        type: actionTypes.SIGNIN
+    }
+}

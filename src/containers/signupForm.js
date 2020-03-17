@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
+import { navigate } from "gatsby"
 
 import Input from "../components/ui/input"
 import Button from "../components/ui/button"
@@ -23,7 +24,7 @@ const SignupForm = props => {
             title: 'Password',
             elementConfig: {
                 placeholder: 'password',
-                type: 'text'
+                type: 'password'
             }
         }
     });
@@ -55,7 +56,21 @@ const SignupForm = props => {
 
     const cancelHandler = e => {
         e.preventDefault();
-        alert('zogma');
+        const clearEmail = {
+            ...signupForm['email'],
+            value: ''
+        }
+        const clearPassword = {
+            ...signupForm['password'],
+            value: ''
+        }
+        const clearForm = {
+            ...signupForm,
+            ['email']: clearEmail,
+            ['password']: clearPassword
+        }
+        setSignupForm(clearForm);
+        navigate('/');
     }
 
     return (

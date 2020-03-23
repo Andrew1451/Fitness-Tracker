@@ -23,7 +23,22 @@ export const signupFail = (error) => {
 
 export const signup = (email, password) => {
     return dispatch => {
-        dispatch(signupStart())
+        dispatch(signupStart());
+        // axios.post({
+        //     method: 'post',
+        //     'Content-Type': 'application/json',
+        //     url: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.GATSBY_API_KEY}`,
+        //     email: email,
+        //     password: password,
+        //     returnSecureToken: true
+        // })
+        axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.GATSBY_API_KEY}`, 
+        { email: email, password: password, returnSecureToken: true }, {'Content-Type': 'application/json'})
+        .then(response => {
+            // JSON.stringify(response);
+            console.log(response);
+        })
+        .catch(error => console.log(`Error... : ${error}`));
     }
 }
 

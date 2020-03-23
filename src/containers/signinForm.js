@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-// import { navigate } from "gatsby"
 
 import classes from "./form.module.css"
 import Input from "../components/ui/input"
@@ -50,6 +49,24 @@ const SigninForm = props => {
         setSigninForm(updatedForm);
     }
 
+    const cancelHandler = e => {
+        e.preventDefault();
+        const clearEmail = {
+            ...signinForm['email'],
+            value: ''
+        };
+        const clearPassword = {
+            ...signinForm['password'],
+            value: ''
+        };
+        const clearForm = {
+            ...signinForm,
+            email: clearEmail,
+            password: clearPassword
+        };
+        setSigninForm(clearForm);
+    }
+
     let form = (
         <form className={classes.Form}>
             {inputArray.map(input => (
@@ -64,7 +81,7 @@ const SigninForm = props => {
             ))}
             <div className={classes.SpreadButtons}>
                 <Button>Sign in</Button>
-                <Button>Cancel</Button>
+                <Button clicked={cancelHandler}>Cancel</Button>
             </div>
         </form>
     );

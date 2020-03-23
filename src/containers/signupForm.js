@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { navigate } from "gatsby"
 
 import Input from "../components/ui/input"
 import Button from "../components/ui/button"
 import classes from "./form.module.css"
 import * as actions from "../store/actions/index"
+import { navigate } from "gatsby"
 
 const SignupForm = props => {
     const [signupForm, setSignupForm] = useState({
@@ -51,7 +51,10 @@ const SignupForm = props => {
 
     const submitHandler = e => {
         e.preventDefault();
-        props.onSignup();
+        const email = signupForm.email.value;
+        const password = signupForm.password.value;
+        props.onSignup(email, password);
+        navigate('/');
     }
 
     const cancelHandler = e => {
@@ -66,11 +69,10 @@ const SignupForm = props => {
         }
         const clearForm = {
             ...signupForm,
-            ['email']: clearEmail,
-            ['password']: clearPassword
+            email: clearEmail,
+            password: clearPassword
         }
         setSignupForm(clearForm);
-        navigate('/');
     }
 
     return (
@@ -100,7 +102,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(null, mapDispatchToProps)(SignupForm);
-
-// web api key = AIzaSyAjzHYmMyWeCh4bfMggTyyhxMXKFmqKaiU
-
-// project id = fitness-tracker-8b179

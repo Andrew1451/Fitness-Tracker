@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
+import { navigate } from "gatsby"
 
 import classes from "./form.module.css"
 import Input from "../components/ui/input"
@@ -67,6 +68,14 @@ const SigninForm = props => {
         setSigninForm(clearForm);
     }
 
+    const submitHandler = e => {
+        e.preventDefault();
+        const email = signinForm.email.value;
+        const password = signinForm.password.value;
+        const isSignup = false;
+        props.onAuthenticate(email, password, isSignup);
+    }
+
     let form = (
         <form className={classes.Form}>
             {inputArray.map(input => (
@@ -80,7 +89,7 @@ const SigninForm = props => {
                 />
             ))}
             <div className={classes.SpreadButtons}>
-                <Button>Sign in</Button>
+                <Button clicked={submitHandler}>Sign in</Button>
                 <Button clicked={cancelHandler}>Cancel</Button>
             </div>
         </form>
@@ -95,7 +104,7 @@ const SigninForm = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSignin: () => dispatch(actions.signin())
+        onAuthenticate: (email, password, isSignup) => dispatch(actions.authenticate(email, password, isSignup))
     }
 }
 

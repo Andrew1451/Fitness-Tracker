@@ -1,4 +1,3 @@
 export {
-    signup,
-    signin
-} from "./signup"
+    authenticate
+} from "./auth"

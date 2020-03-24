@@ -1,18 +1,27 @@
 import { createStore as reduxCreateStore, applyMiddleware, compose } from "redux"
+import * as actionType from "../actions/actionTypes"
 import thunk from "redux-thunk"
 
-const reducer = (state, action) => {
-    if (action.type === 'AUTHENTICATE') {
-        return {
-            ...state,
-            isAuthenticated: true
-        }
-    }
-    return state;
+const initialState = {
+    isAuthenticated: false,
+    loading: false,
+    userId: null,
+    token: null,
+    error: null
 }
 
-const initialState = {
-    isAuthenticated: false
+const authenticate = (state, action) => {
+    return {
+        ...state,
+        isAuthenticated: true
+    }
+}
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionType.AUTHENTICATE: return authenticate(state, action);
+        default: return state;
+    }
 }
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;

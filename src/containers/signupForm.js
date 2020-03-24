@@ -53,7 +53,8 @@ const SignupForm = props => {
         e.preventDefault();
         const email = signupForm.email.value;
         const password = signupForm.password.value;
-        props.onSignup(email, password);
+        const isSignup = true;
+        props.onAuthenticate(email, password, isSignup);
         navigate('/');
     }
 
@@ -97,7 +98,7 @@ const SignupForm = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSignup: (email, password) => dispatch(actions.signup(email, password))
+        onAuthenticate: (email, password, isSignin) => dispatch(actions.authenticate(email, password, isSignin))
     }
 }
 

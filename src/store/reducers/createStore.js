@@ -10,6 +10,17 @@ const initialState = {
     error: null
 }
 
+const authSuccess = (state, action) => {
+    return {
+        ...state,
+        isAuthenticated: true,
+        userId: action.authData.userId,
+        token: action.authData.token,
+        loading: false,
+        error: null
+    }
+}
+
 const authenticate = (state, action) => {
     return {
         ...state,
@@ -19,6 +30,7 @@ const authenticate = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionType.AUTH_SUCCESS: return authSuccess(state, action);
         case actionType.AUTHENTICATE: return authenticate(state, action);
         default: return state;
     }

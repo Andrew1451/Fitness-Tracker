@@ -21,17 +21,18 @@ const authSuccess = (state, action) => {
     }
 }
 
-const authenticate = (state, action) => {
+const authFail = (state, action) => {
     return {
         ...state,
-        isAuthenticated: true
+        error: action.error,
+        loading: false
     }
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionType.AUTH_SUCCESS: return authSuccess(state, action);
-        case actionType.AUTHENTICATE: return authenticate(state, action);
+        case actionType.AUTH_FAIL: return authFail(state, action);
         default: return state;
     }
 }

@@ -14,10 +14,10 @@ export const authSuccess = (authData) => {
     }
 }
 
-export const authFail = (error) => {
+export const authFail = (errorMessage) => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error
+        error: errorMessage
     }
 }
 
@@ -38,7 +38,7 @@ export const authenticate = (email, password, isSignup) => {
             console.log(response);
             const authData = {
                 token: response.data.idToken,
-                userId: response.data.idToken,
+                userId: response.data.localId,
                 expiresIn: response.data.expiresIn
             }
             const expiration = new Date(new Date().getTime() + authData.expiresIn * 1000)
@@ -46,7 +46,11 @@ export const authenticate = (email, password, isSignup) => {
             localStorage.setItem('expiresIn', expiration)
             dispatch(authSuccess(authData))
         })
-        .catch(error => console.log(`Error... : ${error.message}`));
+        .catch(error => {
+            const errorMessage = error.response.data.error.message;
+            dispatch(authFail(errorMessage))
+            console.log(error.response.data.error.message)
+        });
     }
 }
 

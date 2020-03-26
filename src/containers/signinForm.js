@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { navigate } from "gatsby"
+// import { navigate } from "gatsby"
 
 import classes from "./form.module.css"
 import Input from "../components/ui/input"
@@ -95,11 +95,23 @@ const SigninForm = props => {
         </form>
     );
 
+    let error = null;
+    if (props.error) {
+        error = <p className={classes.Error}>{props.error.replace('_', ' ')}</p>
+    }
+
     return (
         <div>
             {form}
+            {error}
         </div>
     );
+}
+
+const mapStateToProps = state => {
+    return {
+        error: state.error
+    }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -108,4 +120,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps) (SigninForm);
+export default connect(mapStateToProps, mapDispatchToProps) (SigninForm);

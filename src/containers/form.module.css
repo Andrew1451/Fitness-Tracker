@@ -12,6 +12,12 @@
     margin-top: 49px;
 }
 
+.Error {
+    font-family: Helvetica, Arial, sans-serif;
+    color: lime;
+    text-align: center;
+}
+
 /* @media (orientation: landscape) {
     .Form {
         max-width: 250px;

@@ -6,9 +6,9 @@
  */
 
 import React, { useState, useEffect }from "react"
-import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { connect } from "react-redux"
 import * as actions from "../store/actions/index"
 import NavBar from "../components/navigation/navBar"
 import SideDrawer from "../components/navigation/sideDrawer"
@@ -23,7 +23,7 @@ const Layout = props => {
   }
 
   useEffect(() => {
-    props.onCheckAuth()
+    props.onCheckAuth();
   }, [])
 
   const data = useStaticQuery(graphql`

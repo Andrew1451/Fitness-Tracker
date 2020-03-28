@@ -1,4 +1,5 @@
 export {
     authenticate,
-    checkAuth
+    checkAuth,
+    logout
 } from "./auth"

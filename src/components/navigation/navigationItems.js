@@ -8,9 +8,10 @@ import classes from './navigationItems.module.css';
 const NavigationItems = props => {
     return (
         <ul className={classes.NavigationItems}>
-            {props.isAuthenticated ? <NavigationItem link={'/'}>Home</NavigationItem> 
+            <NavigationItem link={'/'}>Home</NavigationItem>
+            {props.isAuthenticated ? <NavigationItem link={'/workouts'}>Previous Workouts</NavigationItem> 
                 : <NavigationItem link={'/create-username'}>Create Username</NavigationItem>}
-            {props.isAuthenticated ? <NavigationItem link={'/workouts'}>Previous Workouts</NavigationItem>
+            {props.isAuthenticated ? <NavigationItem link={'/logout'}>Logout</NavigationItem>
                 : <NavigationItem link={'/sign-in'}>Sign In</NavigationItem>}
         </ul>
     );

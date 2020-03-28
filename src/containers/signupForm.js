@@ -5,7 +5,6 @@ import Input from "../components/ui/input"
 import Button from "../components/ui/button"
 import classes from "./form.module.css"
 import * as actions from "../store/actions/index"
-import { navigate } from "gatsby"
 
 const SignupForm = props => {
     const [signupForm, setSignupForm] = useState({
@@ -55,7 +54,6 @@ const SignupForm = props => {
         const password = signupForm.password.value;
         const isSignup = true;
         props.onAuthenticate(email, password, isSignup);
-        navigate('/');
     }
 
     const cancelHandler = e => {
@@ -76,25 +74,39 @@ const SignupForm = props => {
         setSignupForm(clearForm);
     }
 
+    let error = null;
+    if (props.error) {
+        error = <p className={classes.Error}>{props.error.replace('_', ' ')}</p>
+    }
+
     return (
-        <form className={classes.Form} onSubmit={submitHandler}>
-            {elementArray.map(input => (
-                <Input
-                    key={input.id}
-                    elementConfig={input.config.elementConfig}
-                    value={input.config.value}
-                    changed={(e) => inputChangedHandler(e, input.id)}
-                    title={input.config.title}
-                    inputType={input.config.inputType}
-                />
-            ))};
-            <div className={classes.SpreadButtons}>
-                <Button>Sign Up</Button>
-                <Button clicked={cancelHandler}>Cancel</Button>
-            </div>
-        </form>
+        <>
+            <form className={classes.Form} onSubmit={submitHandler}>
+                {elementArray.map(input => (
+                    <Input
+                        key={input.id}
+                        elementConfig={input.config.elementConfig}
+                        value={input.config.value}
+                        changed={(e) => inputChangedHandler(e, input.id)}
+                        title={input.config.title}
+                        inputType={input.config.inputType}
+                    />
+                ))};
+                <div className={classes.SpreadButtons}>
+                    <Button>Sign Up</Button>
+                    <Button clicked={cancelHandler}>Cancel</Button>
+                </div>
+            </form>
+            {error}
+        </>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        error: state.error
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -102,4 +114,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(SignupForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

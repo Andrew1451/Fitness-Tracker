@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
+import { navigate } from "gatsby"
 
 export const authStart = () => {
     return {
@@ -21,6 +22,41 @@ export const authFail = (errorMessage) => {
     }
 }
 
+export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('localId');
+    return {
+        type: actionTypes.LOGOUT
+    }
+}
+
+export const checkAuth = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logout());
+        }
+        else {
+            const expiresIn = new Date(localStorage.getItem('expiresIn'));
+            const currentTime = new Date();
+            console.log(currentTime)
+            console.log(expiresIn)
+            if (expiresIn <= currentTime) {
+                dispatch(logout());
+            }
+            else {
+                const localId = localStorage.getItem('localId');
+                const authData = {
+                    token: token,
+                    userId: localId
+                }
+                dispatch(authSuccess(authData));
+            }
+        }
+    }
+}
+
 export const authenticate = (email, password, isSignup) => {
     return dispatch => {
         dispatch(authStart());
@@ -38,24 +74,19 @@ export const authenticate = (email, password, isSignup) => {
             console.log(response);
             const authData = {
                 token: response.data.idToken,
-                userId: response.data.localId,
-                expiresIn: response.data.expiresIn
+                userId: response.data.localId
             }
-            const expiration = new Date(new Date().getTime() + authData.expiresIn * 1000)
+            const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000)
             localStorage.setItem('token', authData.token);
-            localStorage.setItem('expiresIn', expiration)
+            localStorage.setItem('expiresIn', expiration);
+            localStorage.setItem('localId', authData.userId);
             dispatch(authSuccess(authData))
+            navigate('/');
         })
         .catch(error => {
             const errorMessage = error.response.data.error.message;
-            dispatch(authFail(errorMessage))
             console.log(error.response.data.error.message)
+            dispatch(authFail(errorMessage))
         });
-    }
-}
-
-export const signin = () => {
-    return {
-        type: actionTypes.SIGNIN
     }
 }

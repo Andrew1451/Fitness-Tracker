@@ -11,6 +11,10 @@
     padding: 7px;
 }
 
+.Button:focus {
+    outline: none;
+}
+
 
 
 /* .Button {

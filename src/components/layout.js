@@ -15,7 +15,7 @@ import SideDrawer from "../components/navigation/sideDrawer"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = props => {
+const Layout = ({children, onCheckAuth}) => {
   const [sideDrawer, setSideDrawer] = useState(false);
 
   const sideDrawerToggleHandler = () => {
@@ -23,8 +23,8 @@ const Layout = props => {
   }
 
   useEffect(() => {
-    props.onCheckAuth();
-  }, [])
+    onCheckAuth();
+  }, [onCheckAuth])
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -42,7 +42,7 @@ const Layout = props => {
       <SideDrawer sideDrawerToggled={sideDrawerToggleHandler} open={sideDrawer} />
       <Header siteTitle={data.site.siteMetadata.title} />
       <div style={{margin: `0 auto`, maxWidth: 960, padding: `0 1.0875rem 1.45rem`}}>
-        <main>{props.children}</main>
+        <main>{children}</main>
       </div>
     </>
   )

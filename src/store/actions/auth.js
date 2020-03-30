@@ -26,10 +26,37 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('localId');
+    localStorage.removeItem('refreshToken')
     return {
         type: actionTypes.LOGOUT
     }
 }
+
+// export const checkAuth = () => {
+//     return dispatch => {
+//         const token = localStorage.getItem('token');
+//         if (!token) {
+//             dispatch(logout());
+//         }
+//         else {
+//             const expiresIn = new Date(localStorage.getItem('expiresIn'));
+//             const currentTime = new Date();
+//             console.log(currentTime)
+//             console.log(expiresIn)
+//             if (expiresIn <= currentTime) {
+//                 dispatch(logout());
+//             }
+//             else {
+//                 const localId = localStorage.getItem('localId');
+//                 const authData = {
+//                     token: token,
+//                     userId: localId
+//                 }
+//                 dispatch(authSuccess(authData));
+//             }
+//         }
+//     }
+// }
 
 export const checkAuth = () => {
     return dispatch => {
@@ -46,12 +73,24 @@ export const checkAuth = () => {
                 dispatch(logout());
             }
             else {
-                const localId = localStorage.getItem('localId');
-                const authData = {
-                    token: token,
-                    userId: localId
+                const refresh_token = localStorage.getItem('refreshToken');
+                const payload = {
+                    grant_type: 'refresh_token',
+                    refresh_token: refresh_token
                 }
-                dispatch(authSuccess(authData));
+                //send refresh token and update localStorage
+                axios.post(`https://securetoken.googleapis.com/v1/token?key=${process.env.GATSBY_API_KEY}`, payload)
+                .then(response => {
+                    console.log(response);
+                    const expiresIn = new Date(new Date().getTime() + response.data.expires_in * 1000)
+                    localStorage.setItem('expiresIn', expiresIn);
+                    const authData = {
+                        token: response.data.id_token,
+                        userId: response.data.user_id
+                    }
+                    dispatch(authSuccess(authData))
+                })
+                .catch(error => console.log(error.response.data.error.message))
             }
         }
     }
@@ -74,12 +113,14 @@ export const authenticate = (email, password, isSignup) => {
             console.log(response);
             const authData = {
                 token: response.data.idToken,
-                userId: response.data.localId
+                userId: response.data.localId,
+                refreshToken: response.data.refreshToken
             }
             const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000)
             localStorage.setItem('token', authData.token);
             localStorage.setItem('expiresIn', expiration);
             localStorage.setItem('localId', authData.userId);
+            localStorage.setItem('refreshToken', authData.refreshToken);
             dispatch(authSuccess(authData))
             navigate('/');
         })

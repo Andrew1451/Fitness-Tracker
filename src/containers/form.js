@@ -24,6 +24,7 @@ const Form = props => {
             }
         }
     });
+    const [workout, setWorkout] = useState([]);
 
     let inputArray = [];
     for (let key in exerciseForm) {
@@ -45,6 +46,24 @@ const Form = props => {
         setExerciseForm(updatedForm);
     }
 
+    const submitExerciseHandler = e => {
+        e.preventDefault();
+        const workoutFromState = [...workout];
+        const exercise = exerciseForm.exercise.value;
+        const reps = exerciseForm.reps.value;
+        const newExercise = {
+            exercise: exercise,
+            reps: reps
+        }
+        workoutFromState.push(newExercise);
+        setWorkout(workoutFromState);
+    }
+
+    const submitWorkoutHandler = e => {
+        e.preventDefault();
+        //submit workout to database
+    }
+
     return (
         <form className={classes.Form}>
             {inputArray.map(input => (
@@ -58,8 +77,8 @@ const Form = props => {
                 />
             ))}
             <div className={classes.SpreadButtons}>
-                <Button>Save Exercise</Button>
-                <Button>Save Workout</Button>
+                <Button clicked={submitExerciseHandler}>Save Exercise</Button>
+                <Button clicked={submitWorkoutHandler}>Save Workout</Button>
             </div>
         </form>
     )

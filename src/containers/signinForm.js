@@ -110,7 +110,7 @@ const SigninForm = props => {
 
 const mapStateToProps = state => {
     return {
-        error: state.error
+        error: state.auth.error
     }
 }
 

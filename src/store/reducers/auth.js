@@ -1,6 +1,4 @@
-import { createStore as reduxCreateStore, applyMiddleware, compose } from "redux"
 import * as actionType from "../actions/actionTypes"
-import thunk from "redux-thunk"
 
 const initialState = {
     isAuthenticated: false,
@@ -47,11 +45,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const createStore = () => reduxCreateStore(reducer, initialState, composeEnhancers(
-    applyMiddleware(thunk)
-  ));
-
-// const createStore = () => reduxCreateStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-export default createStore;
+export default reducer;

@@ -21,8 +21,10 @@ NavigationItems.propTypes = {
     isAuthenticated: PropTypes.bool
 }
 
-const mapStateToProps = ({ isAuthenticated }) => {
-    return { isAuthenticated }
+const mapStateToProps = ( state ) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
 }
 
 export default connect(mapStateToProps)(NavigationItems);

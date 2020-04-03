@@ -26,7 +26,8 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('localId');
-    localStorage.removeItem('refreshToken')
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('exercises');
     return {
         type: actionTypes.LOGOUT
     }
@@ -67,8 +68,6 @@ export const checkAuth = () => {
         else {
             const expiresIn = new Date(localStorage.getItem('expiresIn'));
             const currentTime = new Date();
-            console.log(currentTime)
-            console.log(expiresIn)
             if (expiresIn <= currentTime) {
                 dispatch(logout());
             }
@@ -81,7 +80,6 @@ export const checkAuth = () => {
                 //send refresh token and update localStorage
                 axios.post(`https://securetoken.googleapis.com/v1/token?key=${process.env.GATSBY_API_KEY}`, payload)
                 .then(response => {
-                    console.log(response);
                     const expiresIn = new Date(new Date().getTime() + response.data.expires_in * 1000)
                     localStorage.setItem('expiresIn', expiresIn);
                     const authData = {
@@ -116,11 +114,13 @@ export const authenticate = (email, password, isSignup) => {
                 userId: response.data.localId,
                 refreshToken: response.data.refreshToken
             }
-            const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000)
+            const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+            const exercises = [];
             localStorage.setItem('token', authData.token);
             localStorage.setItem('expiresIn', expiration);
             localStorage.setItem('localId', authData.userId);
             localStorage.setItem('refreshToken', authData.refreshToken);
+            localStorage.setItem('exercises', JSON.stringify(exercises));
             dispatch(authSuccess(authData))
             navigate('/');
         })

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+import * as actions from "../store/actions/index";
 import Input from '../components/ui/input';
 import Button from '../components/ui/button';
 import classes from './form.module.css';
@@ -24,7 +26,6 @@ const Form = props => {
             }
         }
     });
-    const [workout, setWorkout] = useState([]);
 
     let inputArray = [];
     for (let key in exerciseForm) {
@@ -46,17 +47,36 @@ const Form = props => {
         setExerciseForm(updatedForm);
     }
 
+    const clearFields = () => {
+        const clearExercise = {
+            ...exerciseForm['exercise'],
+            value: ''
+        }
+        const clearReps = {
+            ...exerciseForm['reps'],
+            value: ''
+        }
+        const clearedForm = {
+            ...exerciseForm,
+            exercise: clearExercise,
+            reps: clearReps
+        }
+        setExerciseForm(clearedForm);
+    }
+
     const submitExerciseHandler = e => {
         e.preventDefault();
-        const workoutFromState = [...workout];
         const exercise = exerciseForm.exercise.value;
         const reps = exerciseForm.reps.value;
         const newExercise = {
             exercise: exercise,
             reps: reps
         }
-        workoutFromState.push(newExercise);
-        setWorkout(workoutFromState);
+        const localStorageExercises = JSON.parse(localStorage.getItem('exercises'));
+        localStorageExercises.push(newExercise);
+        localStorage.setItem('exercises', JSON.stringify(localStorageExercises))
+        props.onSaveExercise(newExercise)
+        clearFields();
     }
 
     const submitWorkoutHandler = e => {
@@ -84,4 +104,10 @@ const Form = props => {
     )
 }
 
-export default Form;
+const mapDispatchToProps = dispatch => {
+    return {
+        onSaveExercise: (newExercise) => dispatch(actions.saveExercise(newExercise))
+    }
+}
+
+export default connect(null, mapDispatchToProps) (Form);

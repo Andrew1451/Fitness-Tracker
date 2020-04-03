@@ -39,3 +39,10 @@ export const saveWorkoutSuccess = () => {
         type: actionTypes.SAVE_WORKOUT_SUCCESS
     }
 }
+
+export const saveExercise = (newExercise) => {
+    return {
+        type: actionTypes.SAVE_EXERCISE,
+        newExercise: newExercise
+    }
+}

@@ -5,5 +5,6 @@ export {
 } from "./auth"
 
 export {
-    saveExercise
+    saveExercise,
+    saveWorkout
 } from "./workouts"

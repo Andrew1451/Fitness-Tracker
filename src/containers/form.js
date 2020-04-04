@@ -81,33 +81,61 @@ const Form = props => {
 
     const submitWorkoutHandler = e => {
         e.preventDefault();
-        //submit workout to database
+        const exercise = exerciseForm.exercise.value;
+        const reps = exerciseForm.reps.value;
+        const workout = JSON.parse(localStorage.getItem('exercises'));
+        if (exercise) {
+            const newExercise = {
+                exercise: exercise,
+                reps: reps
+            }
+            workout.push(newExercise);
+            props.onSaveWorkout(workout);
+            clearFields();
+        } else {
+            props.onSaveWorkout(workout);
+        }
+    }
+
+    let errorMessage = null;
+    if (props.errorMessage) {
+    errorMessage = <p className={classes.Error}>{props.errorMessage}</p>
     }
 
     return (
-        <form className={classes.Form}>
-            {inputArray.map(input => (
-                <Input 
-                    key={input.id} 
-                    inputType={input.config.inputType} 
-                    value={input.config.value} 
-                    title={input.config.title} 
-                    elementConfig={input.config.elementConfig} 
-                    changed={(e) => inputChangedHandler(e, input.id)}
-                />
-            ))}
-            <div className={classes.SpreadButtons}>
-                <Button clicked={submitExerciseHandler}>Save Exercise</Button>
-                <Button clicked={submitWorkoutHandler}>Save Workout</Button>
-            </div>
-        </form>
+        <>
+            <form className={classes.Form}>
+                {inputArray.map(input => (
+                    <Input 
+                        key={input.id} 
+                        inputType={input.config.inputType} 
+                        value={input.config.value} 
+                        title={input.config.title} 
+                        elementConfig={input.config.elementConfig} 
+                        changed={(e) => inputChangedHandler(e, input.id)}
+                    />
+                ))}
+                <div className={classes.SpreadButtons}>
+                    <Button clicked={submitExerciseHandler}>Save Exercise</Button>
+                    <Button clicked={submitWorkoutHandler}>Save Workout</Button>
+                </div>
+            </form>
+            {errorMessage}
+        </>
     )
+}
+
+const mapStateToProps = state => {
+    return {
+        errorMessage: state.workouts.error
+    }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSaveExercise: (newExercise) => dispatch(actions.saveExercise(newExercise))
+        onSaveExercise: (newExercise) => dispatch(actions.saveExercise(newExercise)),
+        onSaveWorkout: (workout) => dispatch(actions.saveWorkout(workout))
     }
 }
 
-export default connect(null, mapDispatchToProps) (Form);
+export default connect(mapStateToProps, mapDispatchToProps) (Form);

@@ -115,12 +115,11 @@ export const authenticate = (email, password, isSignup) => {
                 refreshToken: response.data.refreshToken
             }
             const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-            const exercises = [];
             localStorage.setItem('token', authData.token);
             localStorage.setItem('expiresIn', expiration);
             localStorage.setItem('localId', authData.userId);
             localStorage.setItem('refreshToken', authData.refreshToken);
-            localStorage.setItem('exercises', JSON.stringify(exercises));
+            localStorage.setItem('exercises', '[]');
             dispatch(authSuccess(authData))
             navigate('/');
         })

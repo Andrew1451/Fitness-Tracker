@@ -40,6 +40,30 @@ export const saveWorkoutSuccess = () => {
     }
 }
 
+export const saveWorkoutFail = (errorMessage) => {
+    return {
+        type: actionTypes.SAVE_WORKOUT_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export const saveWorkout = (workout) => {
+    return dispatch => {
+        dispatch(saveWorkoutStart());
+        axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/workouts.json`, workout)
+        .then(response => {
+            console.log(response);
+            dispatch(saveWorkoutSuccess());
+            localStorage.setItem('exercises', '[]')
+        })
+        .catch(error => {
+            console.log(error.message)
+            const errorMessage = error.message;
+            dispatch(saveWorkoutFail(errorMessage));
+        })
+    }
+}
+
 export const saveExercise = (newExercise) => {
     return {
         type: actionTypes.SAVE_EXERCISE,

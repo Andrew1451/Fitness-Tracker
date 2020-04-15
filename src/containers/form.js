@@ -84,6 +84,12 @@ const Form = props => {
         const exercise = exerciseForm.exercise.value;
         const reps = exerciseForm.reps.value;
         const workout = JSON.parse(localStorage.getItem('exercises'));
+        const time = new Date();
+        const date = time.toLocaleDateString('en', { month: 'numeric', day: 'numeric', year: '2-digit' });
+        const addDate = {
+            date: date
+        };
+        workout.unshift(addDate);
         if (exercise) {
             const newExercise = {
                 exercise: exercise,

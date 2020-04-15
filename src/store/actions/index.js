@@ -6,5 +6,6 @@ export {
 
 export {
     saveExercise,
-    saveWorkout
+    saveWorkout,
+    fetchWorkouts
 } from "./workouts"

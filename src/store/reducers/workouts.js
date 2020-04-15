@@ -14,6 +14,22 @@ const fetchWorkoutsStart = (state, action) => {
     }
 }
 
+const fetchWorkoutsSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        workouts: action.workouts
+    }
+}
+
+const fetchWorkoutsFail = (state, action) => {
+    return {
+        ...state,
+        error: action.error,
+        loading: false
+    }
+}
+
 const saveExercise = (state, action) => {
     return {
         ...state,
@@ -47,6 +63,8 @@ const saveWorkoutFail = (state, action) => {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_WORKOUTS_START: return fetchWorkoutsStart(state, action);
+        case actionTypes.FETCH_WORKOUTS_SUCCESS: return fetchWorkoutsSuccess(state, action);
+        case actionTypes.FETCH_WORKOUTS_FAIL: return fetchWorkoutsFail(state, action);
         case actionTypes.SAVE_EXERCISE: return saveExercise(state, action);
         case actionTypes.SAVE_WORKOUT_START: return saveWorkoutStart(state, action);
         case actionTypes.SAVE_WORKOUT_SUCCESS: return saveWorkoutSuccess(state, action);

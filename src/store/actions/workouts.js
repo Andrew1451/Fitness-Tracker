@@ -13,11 +13,10 @@ export const fetchWorkoutsStart = () => {
     }
 }
 
-export const fetchWorkoutsSuccess = (workout, reps) => {
+export const fetchWorkoutsSuccess = (workouts) => {
     return {
         type: actionTypes.FETCH_WORKOUTS_SUCCESS,
-        workout: workout,
-        reps: reps
+        workouts: workouts
     }
 }
 
@@ -60,6 +59,22 @@ export const saveWorkout = (workout) => {
             console.log(error.message)
             const errorMessage = error.message;
             dispatch(saveWorkoutFail(errorMessage));
+        })
+    }
+}
+
+export const fetchWorkouts = () => {
+    return dispatch => {
+        dispatch(fetchWorkoutsStart());
+        axios.get(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/workouts.json`)
+        .then(response => {
+            console.log(response)
+            const data = response.data;
+            const workouts = Object.values(data);
+            dispatch(fetchWorkoutsSuccess(workouts));
+        })
+        .catch(error => {
+            console.log(error);
         })
     }
 }

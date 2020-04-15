@@ -108,7 +108,6 @@ export const authenticate = (email, password, isSignup) => {
         }
         axios.post(url, data)
         .then(response => {
-            console.log(response);
             const authData = {
                 token: response.data.idToken,
                 userId: response.data.localId,

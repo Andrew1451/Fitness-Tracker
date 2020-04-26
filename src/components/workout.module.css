@@ -1,0 +1,38 @@
+.Workout {
+    margin: 20px auto;
+    padding: 25px 30px 20px 30px;
+    width: 75%;
+    border: 1px solid lime;
+    color: lime;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.Workout h3 {
+    text-align: center;
+}
+
+.Workout p {
+    margin-bottom: .75rem;
+}
+
+.Exercise {
+    margin-bottom: 40px;
+}
+
+.Exercise span {
+    color: white;
+    margin-left: 18px;
+}
+
+@media (min-width: 700px) {
+    .Workout {
+        padding: 20px 0 20px 40px;
+    }
+    .Workout h3 {
+        padding-right: 40px;
+    }
+    .Exercise {
+        width: 50%;
+        display: inline-block;
+    }
+}

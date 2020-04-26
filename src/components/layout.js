@@ -14,6 +14,7 @@ import NavBar from "../components/navigation/navBar"
 import SideDrawer from "../components/navigation/sideDrawer"
 import Header from "./header"
 import "./layout.css"
+import classes from "./layout.module.css"
 
 const Layout = ({children, onCheckAuth}) => {
   const [sideDrawer, setSideDrawer] = useState(false);
@@ -41,7 +42,7 @@ const Layout = ({children, onCheckAuth}) => {
       <NavBar open={sideDrawer} />
       <SideDrawer sideDrawerToggled={sideDrawerToggleHandler} open={sideDrawer} />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div style={{margin: `0 auto`, maxWidth: 960, padding: `0 1.0875rem 1.45rem`}}>
+      <div className={classes.Main}>
         <main>{children}</main>
       </div>
     </>

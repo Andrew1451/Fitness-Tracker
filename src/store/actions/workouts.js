@@ -13,7 +13,7 @@ export const fetchWorkoutsStart = () => {
     }
 }
 
-export const fetchWorkoutsSuccess = (workouts) => {
+export const fetchWorkoutsSuccess = ( workouts ) => {
     return {
         type: actionTypes.FETCH_WORKOUTS_SUCCESS,
         workouts: workouts
@@ -46,29 +46,26 @@ export const saveWorkoutFail = (errorMessage) => {
     }
 }
 
-export const saveWorkout = (workout) => {
+export const saveWorkout = (workout, userId) => {
     return dispatch => {
         dispatch(saveWorkoutStart());
-        axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/workouts.json`, workout)
+        axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${userId}/workouts.json`, workout)
         .then(response => {
-            console.log(response);
             dispatch(saveWorkoutSuccess());
             localStorage.setItem('exercises', '[]')
         })
         .catch(error => {
-            console.log(error.message)
             const errorMessage = error.message;
             dispatch(saveWorkoutFail(errorMessage));
         })
     }
 }
 
-export const fetchWorkouts = () => {
+export const fetchWorkouts = ( userId ) => {
     return dispatch => {
         dispatch(fetchWorkoutsStart());
-        axios.get(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/workouts.json`)
+        axios.get(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${userId}/workouts.json`)
         .then(response => {
-            console.log(response)
             const data = response.data;
             const workouts = Object.values(data);
             dispatch(fetchWorkoutsSuccess(workouts));

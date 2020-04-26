@@ -21,7 +21,7 @@ const Workouts = ({isAuthenticated, onFetchWorkouts, workouts, userId}) => {
     <Layout>
       <SEO title="Home" />
       {exercises}
-      {isAuthenticated ? null : <p style={{color: 'lime', 'text-align': 'center'}}>You need to sign in!</p>}
+      {isAuthenticated ? null : <p style={{color: 'lime', textAlign: 'center'}}>You need to sign in!</p>}
     </Layout>
   );
 }
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchWorkouts: () => dispatch(actions.fetchWorkouts())
+    onFetchWorkouts: (userId) => dispatch(actions.fetchWorkouts(userId))
   }
 }
 

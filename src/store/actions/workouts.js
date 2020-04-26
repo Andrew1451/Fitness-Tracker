@@ -46,10 +46,10 @@ export const saveWorkoutFail = (errorMessage) => {
     }
 }
 
-export const saveWorkout = (workout, userId) => {
+export const saveWorkout = (workout, id) => {
     return dispatch => {
         dispatch(saveWorkoutStart());
-        axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${userId}/workouts.json`, workout)
+        axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${id}/workouts.json`, workout)
         .then(response => {
             dispatch(saveWorkoutSuccess());
             localStorage.setItem('exercises', '[]')

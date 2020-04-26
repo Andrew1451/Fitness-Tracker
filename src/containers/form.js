@@ -81,7 +81,7 @@ const Form = props => {
 
     const submitWorkoutHandler = e => {
         e.preventDefault();
-        const userId = props.userId;
+        const id = props.userId;
         const exercise = exerciseForm.exercise.value;
         const reps = exerciseForm.reps.value;
         const workout = JSON.parse(localStorage.getItem('exercises'));
@@ -97,10 +97,10 @@ const Form = props => {
                 reps: reps
             }
             workout.push(newExercise);
-            props.onSaveWorkout(workout, userId);
+            props.onSaveWorkout(workout, id);
             clearFields();
         } else {
-            props.onSaveWorkout(workout, userId);
+            props.onSaveWorkout(workout, id);
         }
     }
 
@@ -142,7 +142,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSaveExercise: (newExercise) => dispatch(actions.saveExercise(newExercise)),
-        onSaveWorkout: (workout) => dispatch(actions.saveWorkout(workout))
+        onSaveWorkout: (workout, id) => dispatch(actions.saveWorkout(workout, id))
     }
 }
 

@@ -9,8 +9,8 @@ import * as actions from "../store/actions/index"
 const Workouts = ({isAuthenticated, onFetchWorkouts, workouts, userId}) => {
   useEffect(() => {
     onFetchWorkouts(userId);
-  }, [onFetchWorkouts]);
-  let exercises = workouts.map((workout, i) => {
+  }, [onFetchWorkouts, userId]);
+  let exercises = [...workouts].reverse().map((workout, i) => {
         const date = Object.values(workout[0])
         return <Workout key={i} workout={workout} date={date}/>
     });

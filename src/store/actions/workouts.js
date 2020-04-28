@@ -1,12 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
 
-// export const fetchWorkouts = (workout, reps) => {
-//     dispatch => {
-//         axios.post()
-//     }
-// }
-
 export const fetchWorkoutsStart = () => {
     return {
         type: actionTypes.FETCH_WORKOUTS_START

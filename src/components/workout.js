@@ -10,7 +10,7 @@ const Workout = ({ workout, date }) => {
                 <p>Reps: <span>{w.reps}</span></p>
             </div>
         )
-    })
+    });
     return (
         <div className={classes.Workout}>
             <h3>{date}</h3>

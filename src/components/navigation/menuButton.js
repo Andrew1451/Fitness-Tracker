@@ -7,6 +7,7 @@ const MenuButton = props => {
         buttonStyle = classes.Open;
     }
     return (
+        //eslint-disable-next-line
         <div className={classes.MenuButton} onClick={props.clicked}>
             <div className={buttonStyle}></div>
             <div className={buttonStyle}></div>

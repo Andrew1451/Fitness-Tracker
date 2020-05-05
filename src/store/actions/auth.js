@@ -23,41 +23,17 @@ export const authFail = (errorMessage) => {
 }
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiresIn');
-    localStorage.removeItem('localId');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('exercises');
-    return {
-        type: actionTypes.LOGOUT
+    if (typeof window !== `undefined`) {
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('expiresIn');
+        window.localStorage.removeItem('localId');
+        window.localStorage.removeItem('refreshToken');
+        window.localStorage.removeItem('exercises');
+        return {
+            type: actionTypes.LOGOUT
+        }
     }
 }
-
-// export const checkAuth = () => {
-//     return dispatch => {
-//         const token = localStorage.getItem('token');
-//         if (!token) {
-//             dispatch(logout());
-//         }
-//         else {
-//             const expiresIn = new Date(localStorage.getItem('expiresIn'));
-//             const currentTime = new Date();
-//             console.log(currentTime)
-//             console.log(expiresIn)
-//             if (expiresIn <= currentTime) {
-//                 dispatch(logout());
-//             }
-//             else {
-//                 const localId = localStorage.getItem('localId');
-//                 const authData = {
-//                     token: token,
-//                     userId: localId
-//                 }
-//                 dispatch(authSuccess(authData));
-//             }
-//         }
-//     }
-// }
 
 export const checkAuth = () => {
     return dispatch => {

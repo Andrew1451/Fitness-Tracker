@@ -74,8 +74,9 @@ const Form = props => {
         }
         const localStorageExercises = JSON.parse(localStorage.getItem('exercises'));
         localStorageExercises.push(newExercise);
-        localStorage.setItem('exercises', JSON.stringify(localStorageExercises))
-        props.onSaveExercise(newExercise)
+        localStorage.setItem('exercises', JSON.stringify(localStorageExercises));
+        props.onCheckAuth();
+        props.onSaveExercise(newExercise);
         clearFields();
     }
 
@@ -142,7 +143,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSaveExercise: (newExercise) => dispatch(actions.saveExercise(newExercise)),
-        onSaveWorkout: (workout, id) => dispatch(actions.saveWorkout(workout, id))
+        onSaveWorkout: (workout, id) => dispatch(actions.saveWorkout(workout, id)),
+        onCheckAuth: () => dispatch(actions.checkAuth())
     }
 }
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-// import { navigate } from "gatsby"
 
 import classes from "./form.module.css"
 import Input from "../components/ui/input"
@@ -89,8 +88,8 @@ const SigninForm = props => {
                 />
             ))}
             <div className={classes.SpreadButtons}>
-                <Button clicked={submitHandler}>Sign in</Button>
                 <Button clicked={cancelHandler}>Cancel</Button>
+                <Button clicked={submitHandler}>Sign in</Button>
             </div>
         </form>
     );

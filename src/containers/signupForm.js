@@ -91,10 +91,10 @@ const SignupForm = props => {
                         title={input.config.title}
                         inputType={input.config.inputType}
                     />
-                ))};
+                ))}
                 <div className={classes.SpreadButtons}>
-                    <Button>Sign Up</Button>
                     <Button clicked={cancelHandler}>Cancel</Button>
+                    <Button>Sign Up</Button>
                 </div>
             </form>
             {error}

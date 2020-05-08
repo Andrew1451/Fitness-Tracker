@@ -6,6 +6,43 @@
     margin: 17% auto;
 }
 
+.Welcome {
+    color: lime;
+    margin: 47px 29px;
+    font-family: Helvetica, Georgia, Arial, sans-serif;
+}
+
+.Welcome h2 {
+    color: white;
+    text-align: center;
+}
+
+.Welcome ul {
+    margin: 0;
+    position: relative;
+    top: 20px;
+}
+
+.Welcome li {
+    margin-bottom: 26px;
+}
+
+.Signin {
+    display: flex;
+    justify-content: space-around;
+    width: 71%;
+    position: relative;
+    top: 20px;
+    margin: 0 auto;
+    color: white;
+}
+
+.Signin a {
+    color: lime;
+    font-weight: bold;
+    font-size: 17px;
+}
+
 .SpreadButtons {
     display: flex;
     justify-content: space-between;
@@ -18,16 +55,34 @@
     text-align: center;
 }
 
-/* @media (orientation: landscape) {
-    .Form {
-        max-width: 250px;
+@media (min-width: 445px) {
+    .Welcome ul {
+        left: 10%;
+        width: 73%;
     }
-} */
+}
 
 @media (min-width: 550px) {
     .Form {
         width: 70%;
         margin: 150px auto;
+    }
+}
+
+@media (min-width: 650px) {
+    .Welcome {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .Welcome ul {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .Signin {
+        width: 61%;
+    }
+    .Form {
+        margin: 65px auto;
     }
 }
 
@@ -37,10 +92,12 @@
     }
 }
 
-/* .Form {
-    width: 60%;
-    border: 1px solid lime;
-    padding: 50px;
-    border-radius: 5px;
-    margin: 0 auto;
-} */
+@media (min-width: 950px) {
+    .Welcome li {
+        font-size: 22px;
+    }
+    .Signin {
+        width: 45%;
+        top: 29px;
+    }
+}

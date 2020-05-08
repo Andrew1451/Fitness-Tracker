@@ -7,7 +7,8 @@ import classes from './navigationItems.module.css';
 
 const NavigationItems = props => {
     return (
-        <ul className={classes.NavigationItems}>
+        //eslint-disable-next-line
+        <ul className={classes.NavigationItems} onClick={props.clicked}>
             <NavigationItem link={'/'}>Home</NavigationItem>
             {props.isAuthenticated ? <NavigationItem link={'/workouts'}>Previous Workouts</NavigationItem> 
                 : <NavigationItem link={'/create-username'}>Create Username</NavigationItem>}

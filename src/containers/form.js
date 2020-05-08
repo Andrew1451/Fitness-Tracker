@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from "gatsby";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 import Input from '../components/ui/input';
@@ -26,6 +27,12 @@ const Form = props => {
             }
         }
     });
+
+    const { onCheckAuth } = props;
+
+    useEffect(() => {
+        onCheckAuth();
+    }, [onCheckAuth])
 
     let inputArray = [];
     for (let key in exerciseForm) {
@@ -75,7 +82,7 @@ const Form = props => {
         const localStorageExercises = JSON.parse(localStorage.getItem('exercises'));
         localStorageExercises.push(newExercise);
         localStorage.setItem('exercises', JSON.stringify(localStorageExercises));
-        props.onCheckAuth();
+        onCheckAuth();
         props.onSaveExercise(newExercise);
         clearFields();
     }
@@ -110,24 +117,47 @@ const Form = props => {
     errorMessage = <p className={classes.Error}>{props.errorMessage}</p>
     }
 
+    let form = (
+        <form className={classes.Form}>
+            {inputArray.map(input => (
+                <Input 
+                    key={input.id} 
+                    inputType={input.config.inputType} 
+                    value={input.config.value} 
+                    title={input.config.title} 
+                    elementConfig={input.config.elementConfig} 
+                    changed={(e) => inputChangedHandler(e, input.id)}
+                />
+            ))}
+            <div className={classes.SpreadButtons}>
+                <Button clicked={submitExerciseHandler}>Save Exercise</Button>
+                <Button clicked={submitWorkoutHandler}>Save Workout</Button>
+            </div>
+        </form>
+    );
+
+    if (!props.userId) {
+        form = (
+            <div className={classes.Welcome}>
+                <h2>Welcome!</h2>
+                <ul>
+                    <li>Enter your Exercises and amount of Reps</li>
+                    <li>Save each Exercise then save your Workout</li>
+                    <li>View Previous Workouts</li>
+                    <li>Gains</li>
+                </ul>
+                <div className={classes.Signin}>
+                    <Link to="/sign-in">Sign in!</Link>
+                    <p>or</p>
+                    <Link to="/create-username">Sign up!</Link>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <>
-            <form className={classes.Form}>
-                {inputArray.map(input => (
-                    <Input 
-                        key={input.id} 
-                        inputType={input.config.inputType} 
-                        value={input.config.value} 
-                        title={input.config.title} 
-                        elementConfig={input.config.elementConfig} 
-                        changed={(e) => inputChangedHandler(e, input.id)}
-                    />
-                ))}
-                <div className={classes.SpreadButtons}>
-                    <Button clicked={submitExerciseHandler}>Save Exercise</Button>
-                    <Button clicked={submitWorkoutHandler}>Save Workout</Button>
-                </div>
-            </form>
+            {form}
             {errorMessage}
         </>
     )

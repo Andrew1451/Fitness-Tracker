@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
+import { navigate } from "gatsby"
 
 export const fetchWorkoutsStart = () => {
     return {
@@ -46,7 +47,8 @@ export const saveWorkout = (workout, id) => {
         axios.post(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${id}/workouts.json`, workout)
         .then(response => {
             dispatch(saveWorkoutSuccess());
-            localStorage.setItem('exercises', '[]')
+            localStorage.setItem('exercises', '[]');
+            navigate('/workouts');
         })
         .catch(error => {
             const errorMessage = error.message;

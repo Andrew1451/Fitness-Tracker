@@ -4,6 +4,7 @@
     padding: 32px;
     border-radius: 5px;
     margin: 17% auto;
+    margin-bottom: 10%;
 }
 
 .Welcome {
@@ -47,6 +48,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: 49px;
+}
+
+.Getit {
+    color: lime;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .Error {

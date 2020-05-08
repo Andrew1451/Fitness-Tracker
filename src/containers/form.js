@@ -118,22 +118,25 @@ const Form = props => {
     }
 
     let form = (
-        <form className={classes.Form}>
-            {inputArray.map(input => (
-                <Input 
-                    key={input.id} 
-                    inputType={input.config.inputType} 
-                    value={input.config.value} 
-                    title={input.config.title} 
-                    elementConfig={input.config.elementConfig} 
-                    changed={(e) => inputChangedHandler(e, input.id)}
-                />
-            ))}
-            <div className={classes.SpreadButtons}>
-                <Button clicked={submitExerciseHandler}>Save Exercise</Button>
-                <Button clicked={submitWorkoutHandler}>Save Workout</Button>
-            </div>
-        </form>
+        <div>
+            <form className={classes.Form}>
+                {inputArray.map(input => (
+                    <Input 
+                        key={input.id} 
+                        inputType={input.config.inputType} 
+                        value={input.config.value} 
+                        title={input.config.title} 
+                        elementConfig={input.config.elementConfig} 
+                        changed={(e) => inputChangedHandler(e, input.id)}
+                    />
+                ))}
+                <div className={classes.SpreadButtons}>
+                    <Button clicked={submitExerciseHandler}>Save Exercise</Button>
+                    <Button clicked={submitWorkoutHandler}>Save Workout</Button>
+                </div>
+            </form>
+            <p className={classes.Getit}>get it!</p>
+        </div>
     );
 
     if (!props.userId) {

@@ -19,7 +19,7 @@ const Workouts = ({isAuthenticated, onFetchWorkouts, workouts, userId}) => {
   }
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Workouts" />
       {exercises}
       {isAuthenticated ? null : <p style={{color: 'lime', textAlign: 'center'}}>You need to sign in!</p>}
     </Layout>

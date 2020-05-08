@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Fitness Tracker`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Keep track of your exercises and your workouts. View your previous workouts to see progress (or lack of progress), and change accordingly. Start keeping track, to get on track.`,
+    author: `Andrew Gaynor`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -76,7 +76,7 @@ const SigninForm = props => {
     }
 
     let form = (
-        <form className={classes.Form}>
+        <form className={classes.Form} onSubmit={submitHandler}>
             {inputArray.map(input => (
                 <Input 
                     key={input.id}
@@ -88,8 +88,8 @@ const SigninForm = props => {
                 />
             ))}
             <div className={classes.SpreadButtons}>
-                <Button clicked={cancelHandler}>Cancel</Button>
-                <Button clicked={submitHandler}>Sign in</Button>
+                <Button type={'button'} clicked={cancelHandler}>Cancel</Button>
+                <Button type={'submit'} clicked={submitHandler}>Sign in</Button>
             </div>
         </form>
     );

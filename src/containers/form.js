@@ -147,7 +147,7 @@ const Form = props => {
                     <li>Enter your Exercises and amount of Reps</li>
                     <li>Save each Exercise then save your Workout</li>
                     <li>View Previous Workouts</li>
-                    <li>Gains</li>
+                    <li>Get fit</li>
                 </ul>
                 <div className={classes.Signin}>
                     <Link to="/sign-in">Sign in!</Link>

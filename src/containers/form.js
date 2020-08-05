@@ -145,7 +145,7 @@ const Form = props => {
                 <h2>Welcome!</h2>
                 <ul>
                     <li>Enter your Exercises and amount of Reps</li>
-                    <li>Save each Exercise then save your Workout</li>
+                    <li>Save each Exercise, then save your Workout</li>
                     <li>View Previous Workouts</li>
                     <li>Get fit</li>
                 </ul>

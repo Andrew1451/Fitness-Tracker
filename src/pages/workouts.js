@@ -10,17 +10,20 @@ const Workouts = ({isAuthenticated, onFetchWorkouts, workouts, userId}) => {
   useEffect(() => {
     onFetchWorkouts(userId);
   }, [onFetchWorkouts, userId]);
-  let exercises = [...workouts].reverse().map((workout, i) => {
-        const date = Object.values(workout[0])
-        return <Workout key={i} workout={workout} date={date}/>
-    });
+
+  let workout = workouts.map(([workoutId, exercises]) => {
+        
+    const date = Object.values(exercises[0])
+    return <Workout key={workoutId} userId={userId} workoutId={workoutId} workout={exercises} date={date}/>
+  });
+  
   if (!isAuthenticated) {
-    exercises = null;
+    workout = null;
   }
   return (
     <Layout>
       <SEO title="Workouts" />
-      {exercises}
+      {workout}
       {isAuthenticated ? null : <p style={{color: 'lime', textAlign: 'center'}}>You need to sign in!</p>}
     </Layout>
   );

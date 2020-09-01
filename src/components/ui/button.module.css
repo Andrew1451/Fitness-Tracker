@@ -14,3 +14,19 @@
 .Button:focus {
     outline: none;
 }
+
+.deleteButton {
+    display: block;
+    color: red;
+    border: 0;
+    margin: 0 auto;
+    width: 64%;
+}
+
+@media (min-width: 700px) {
+    .deleteButton {
+        width: 45%;
+        position: relative;
+        right: 17px;
+    }
+}

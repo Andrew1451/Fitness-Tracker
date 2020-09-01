@@ -7,5 +7,6 @@ export {
 export {
     saveExercise,
     saveWorkout,
-    fetchWorkouts
+    fetchWorkouts,
+    deleteWorkout
 } from "./workouts"

@@ -25,8 +25,9 @@ const fetchWorkoutsSuccess = (state, action) => {
 const fetchWorkoutsFail = (state, action) => {
     return {
         ...state,
-        error: action.error,
-        loading: false
+        error: null,
+        loading: false,
+        workouts: []
     }
 }
 
@@ -60,6 +61,29 @@ const saveWorkoutFail = (state, action) => {
     }
 }
 
+const deleteWorkoutStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    }
+}
+
+const deleteWorkoutFail = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: action.errorMessage
+    }
+}
+
+const deleteWorkoutSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: null
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_WORKOUTS_START: return fetchWorkoutsStart(state, action);
@@ -69,6 +93,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SAVE_WORKOUT_START: return saveWorkoutStart(state, action);
         case actionTypes.SAVE_WORKOUT_SUCCESS: return saveWorkoutSuccess(state, action);
         case actionTypes.SAVE_WORKOUT_FAIL: return saveWorkoutFail(state, action);
+        case actionTypes.DELETE_WORKOUT_START: return deleteWorkoutStart(state, action);
+        case actionTypes.DELETE_WORKOUT_FAIL: return deleteWorkoutFail(state, action);
+        case actionTypes.DELETE_WORKOUT_SUCCESS: return deleteWorkoutSuccess(state, action);
         default: return state;
     }
 }

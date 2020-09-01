@@ -15,10 +15,9 @@ export const fetchWorkoutsSuccess = ( workouts ) => {
     }
 }
 
-export const fetchWorkoutsFail = (error) => {
+export const fetchWorkoutsFail = () => {
     return {
-        type: actionTypes.FETCH_WORKOUTS_FAIL,
-        error: error
+        type: actionTypes.FETCH_WORKOUTS_FAIL
     }
 }
 
@@ -38,6 +37,41 @@ export const saveWorkoutFail = (errorMessage) => {
     return {
         type: actionTypes.SAVE_WORKOUT_FAIL,
         errorMessage: errorMessage
+    }
+}
+
+export const deleteWorkoutSuccess = () => {
+    return {
+        type: actionTypes.DELETE_WORKOUT_SUCCESS
+    }
+}
+
+export const deleteWorkoutStart = () => {
+    return {
+        type: actionTypes.DELETE_WORKOUT_START
+    }
+}
+
+export const deleteWorkoutFail = (errorMessage) => {
+    return {
+        type: actionTypes.DELETE_WORKOUT_FAIL,
+        errorMessage: errorMessage
+    }
+}
+
+export const deleteWorkout = (id, workoutId) => {
+    return dispatch => {
+        dispatch(deleteWorkoutStart());
+        axios.delete(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${id}/workouts/${workoutId}.json`,)
+            .then(response => {
+                dispatch(deleteWorkoutSuccess());
+                dispatch(fetchWorkouts(id));
+                navigate('/workouts');
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(deleteWorkoutFail(errorMessage));
+            })
     }
 }
 
@@ -61,13 +95,22 @@ export const fetchWorkouts = ( userId ) => {
     return dispatch => {
         dispatch(fetchWorkoutsStart());
         axios.get(`https://${process.env.GATSBY_PROJECT_ID}.firebaseio.com/${userId}/workouts.json`)
-        .then(response => {
-            const data = response.data;
-            const workouts = Object.values(data);
-            dispatch(fetchWorkoutsSuccess(workouts));
+        .then(async response => {
+            try {
+                const data = await response.data;
+                const workouts = Object.entries(data);
+                workouts.reverse();
+                dispatch(fetchWorkoutsSuccess(workouts));
+            }
+            catch {
+                dispatch(fetchWorkoutsFail());
+                navigate('/workouts')
+            }
         })
-        .catch(error => {
-            console.log(error);
+        .catch(() => {
+            const errorMessage = 'No workouts to grab :(';
+            fetchWorkoutsFail(errorMessage);
+            navigate('/');
         })
     }
 }

@@ -7,6 +7,10 @@
     margin: 0;
 }
 
+.UnfocusNavItems {
+    display: none;
+}
+
 @media (min-width: 650px) {
     .NavigationItems {
         flex-flow: row;
@@ -14,6 +18,10 @@
         justify-content: flex-end;
         align-items: center;
         width: 100%;
+        display: flex;
+    }
+    .UnfocusNavItems {
+        display: flex;
     }
 }
 

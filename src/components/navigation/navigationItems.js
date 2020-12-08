@@ -6,14 +6,20 @@ import NavigationItem from './navigationItem';
 import classes from './navigationItems.module.css';
 
 const NavigationItems = props => {
+    let attachedClasses = [classes.NavigationItems]
+    if (!props.open) {
+        attachedClasses.push(classes.UnfocusNavItems)
+    }
     return (
         //eslint-disable-next-line
-        <ul className={classes.NavigationItems} onClick={props.clicked}>
+        <ul className={attachedClasses.join(' ')} onClick={props.clicked} aria-labelledby='menu'>
             <NavigationItem link={'/'}>Home</NavigationItem>
             {props.isAuthenticated ? <NavigationItem link={'/workouts'}>Previous Workouts</NavigationItem> 
                 : <NavigationItem link={'/create-username'}>Create Username</NavigationItem>}
-            {props.isAuthenticated ? <NavigationItem link={'/logout'}>Logout</NavigationItem>
-                : <NavigationItem link={'/sign-in'}>Sign In</NavigationItem>}
+            {props.isAuthenticated ? <NavigationItem link={'/logout'} setRef={props.setLastNavRef} 
+                    handleKeyPress={props.handleKeyPress} class='lastNavItem'>Logout</NavigationItem>
+                : <NavigationItem link={'/sign-in'} setRef={props.setLastNavRef} 
+                    handleKeyPress={props.handleKeyPress} class='lastNavItem'>Sign In</NavigationItem>}
         </ul>
     );
 };

@@ -13,11 +13,13 @@ const NavigationItems = props => {
     return (
         //eslint-disable-next-line
         <ul className={attachedClasses.join(' ')} onClick={props.clicked} aria-labelledby='menu'>
-            <NavigationItem link={'/'}>Home</NavigationItem>
-            {props.isAuthenticated ? <NavigationItem link={'/workouts'}>Previous Workouts</NavigationItem> 
-                : <NavigationItem link={'/create-username'}>Create Username</NavigationItem>}
+            <NavigationItem link={'/'} handleKeyPress={props.handleKeyPress}>Home</NavigationItem>
+
+            {props.isAuthenticated ? <NavigationItem link={'/workouts'} handleKeyPress={props.handleKeyPress}>Previous Workouts</NavigationItem> 
+                : <NavigationItem link={'/create-username'} handleKeyPress={props.handleKeyPress} >Create Username</NavigationItem>}
+
             {props.isAuthenticated ? <NavigationItem link={'/logout'} setRef={props.setLastNavRef} 
-                    handleKeyPress={props.handleKeyPress} class='lastNavItem'>Logout</NavigationItem>
+                handleKeyPress={props.handleKeyPress} class='lastNavItem'>Logout</NavigationItem>
                 : <NavigationItem link={'/sign-in'} setRef={props.setLastNavRef} 
                     handleKeyPress={props.handleKeyPress} class='lastNavItem'>Sign In</NavigationItem>}
         </ul>

@@ -20,9 +20,14 @@ const SideDrawer = props => {
     }
 
     //accessibility - trap focus for mobile menu
+    //todo: create hook for this
     const handleKeyPress = e => {
         if (e.key === 'Enter') {
             e.target.click();
+        }
+        if (props.open && e.key === 'Escape') {
+            firstNavItem.focus();
+            firstNavItem.click();
         }
         if (e.key === 'Tab' || e.shiftKey) {
             if (e.shiftKey && e.key === 'Tab' && props.open) {  //shift and tab

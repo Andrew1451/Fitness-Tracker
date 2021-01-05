@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { SidebarContext } from '../../utilities/context';
 import classes from "./sideDrawer.module.css"
 import NavigationItems from "./navigationItems"
 import MenuButton from "./menuButton"
+import { handleKeyPress } from "../../utilities/utilities"
 
 const SideDrawer = props => {
     const [firstNavItem, setFirstNavItem] = useState();
@@ -20,39 +22,20 @@ const SideDrawer = props => {
     }
 
     //accessibility - trap focus for mobile menu
-    //todo: create hook for this
-    const handleKeyPress = e => {
-        if (e.key === 'Enter') {
-            e.target.click();
-        }
-        if (props.open && e.key === 'Escape') {
-            firstNavItem.focus();
-            firstNavItem.click();
-        }
-        if (e.key === 'Tab' || e.shiftKey) {
-            if (e.shiftKey && e.key === 'Tab' && props.open) {  //shift and tab
-                if (firstNavItem === document.activeElement) {
-                    lastNavItem.focus();
-                    e.preventDefault();
-                }
-            } else {  //tab
-                if (lastNavItem === document.activeElement) {
-                    firstNavItem.focus();
-                    e.preventDefault();
-                }
-            }
-        }
-    }
+    handleKeyPress(props, firstNavItem, lastNavItem)
+    
     return (
         <>
-            <MenuButton clicked={props.sideDrawerToggled} open={props.open} handleKeyPress={handleKeyPress} 
-                setRef={setChildRef} />
-            <div className={attachedClasses.join(' ')}>
-                <nav>
-                    <NavigationItems clicked={props.sideDrawerToggled} handleKeyPress={handleKeyPress} 
-                    setLastNavRef={setLastNavRef} open={props.open} />
-                </nav>
-            </div>
+            <SidebarContext.Provider value={props.sideDrawerToggled}>
+                <MenuButton clicked={props.sideDrawerToggled} open={props.open} handleKeyPress={handleKeyPress} 
+                    setRef={setChildRef} />
+                <div className={attachedClasses.join(' ')}>
+                    <nav>
+                        <NavigationItems handleKeyPress={handleKeyPress} 
+                        setLastNavRef={setLastNavRef} open={props.open} />
+                    </nav>
+                </div>
+            </SidebarContext.Provider>
         </>
     );
 }

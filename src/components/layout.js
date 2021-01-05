@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, useEffect }from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { connect } from "react-redux"
@@ -16,8 +16,10 @@ import Header from "./header"
 import "./layout.css"
 import classes from "./layout.module.css"
 
+
 const Layout = ({children, onCheckAuth}) => {
   const [sideDrawer, setSideDrawer] = useState(false);
+
 
   const sideDrawerToggleHandler = () => {
     setSideDrawer(!sideDrawer);
@@ -38,6 +40,7 @@ const Layout = ({children, onCheckAuth}) => {
   `)
 
   return (
+    
     <>
       <NavBar open={sideDrawer} />
       <SideDrawer sideDrawerToggled={sideDrawerToggleHandler} open={sideDrawer} />

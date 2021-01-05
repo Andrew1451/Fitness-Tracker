@@ -15,8 +15,10 @@ const NavigationItems = props => {
         <ul className={attachedClasses.join(' ')} onClick={props.clicked} aria-labelledby='menu'>
             <NavigationItem link={'/'} handleKeyPress={props.handleKeyPress}>Home</NavigationItem>
 
-            {props.isAuthenticated ? <NavigationItem link={'/workouts'} handleKeyPress={props.handleKeyPress}>Previous Workouts</NavigationItem> 
-                : <NavigationItem link={'/create-username'} handleKeyPress={props.handleKeyPress} >Create Username</NavigationItem>}
+            {props.isAuthenticated ? <NavigationItem link={'/workouts'}
+             handleKeyPress={props.handleKeyPress}>Previous Workouts</NavigationItem> 
+                : <NavigationItem link={'/create-username'} 
+                handleKeyPress={props.handleKeyPress} >Create Username</NavigationItem>}
 
             {props.isAuthenticated ? <NavigationItem link={'/logout'} setRef={props.setLastNavRef} 
                 handleKeyPress={props.handleKeyPress} class='lastNavItem'>Logout</NavigationItem>

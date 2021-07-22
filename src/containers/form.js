@@ -109,6 +109,7 @@ const Form = props => {
             clearFields();
         } else {
             props.onSaveWorkout(workout, id);
+            clearFields();
         }
     }
 

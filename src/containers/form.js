@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 import Input from '../components/ui/input';
 import Button from '../components/ui/button';
-import classes from './form.module.css';
+import * as classes from './form.module.css';
 
 const Form = props => {
     const [exerciseForm, setExerciseForm] = useState({

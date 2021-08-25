@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import NavigationItem from './navigationItem';
-import classes from './navigationItems.module.css';
+import * as classes from './navigationItems.module.css';
 
 const NavigationItems = props => {
     let attachedClasses = [classes.NavigationItems]

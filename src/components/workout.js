@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import classes from "./workout.module.css"
+import * as classes from "./workout.module.css"
 import Button from "./ui/button"
 import * as actions from "../store/actions/index"
 

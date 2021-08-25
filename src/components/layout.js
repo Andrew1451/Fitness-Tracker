@@ -14,7 +14,7 @@ import NavBar from "../components/navigation/navBar"
 import SideDrawer from "../components/navigation/sideDrawer"
 import Header from "./header"
 import "./layout.css"
-import classes from "./layout.module.css"
+import * as classes from "./layout.module.css"
 
 
 const Layout = ({children, onCheckAuth}) => {

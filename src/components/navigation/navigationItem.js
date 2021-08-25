@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 import { SidebarContext } from '../../utilities/context';
-import classes from './navigationItem.module.css';
+import * as classes from './navigationItem.module.css';
 
 const NavigationItem = props => {
     const sideDrawerToggled = useContext(SidebarContext)

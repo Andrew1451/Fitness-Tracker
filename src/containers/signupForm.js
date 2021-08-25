@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import Input from "../components/ui/input"
 import Button from "../components/ui/button"
-import classes from "./form.module.css"
+import * as classes from "./form.module.css"
 import * as actions from "../store/actions/index"
 
 const SignupForm = props => {

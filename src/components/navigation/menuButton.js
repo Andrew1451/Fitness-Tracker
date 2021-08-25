@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './menuButton.module.css';
+import * as classes from './menuButton.module.css';
 
 const MenuButton = props => {
     let buttonStyle = null;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SidebarContext } from '../../utilities/context';
-import classes from "./sideDrawer.module.css"
+import * as classes from "./sideDrawer.module.css"
 import NavigationItems from "./navigationItems"
 import MenuButton from "./menuButton"
 import { handleKeyPress } from "../../utilities/utilities"

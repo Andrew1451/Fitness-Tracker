@@ -5,6 +5,7 @@ module.exports = {
     author: `Andrew Gaynor`,
   },
   plugins: [
+    // `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -25,6 +26,14 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-css-modules`,
+      options: {
+        // Exclude global styles from the plugin using a RegExp:
+        exclude: `\/global\/`,
+        // For all the options check babel-plugin-react-css-modules README link provided above
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

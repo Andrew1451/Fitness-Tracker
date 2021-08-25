@@ -1,7 +1,7 @@
 import React from "react"
 // import MenuButton from "./menuButton"
 import Logo from "../ui/logo"
-import classes from "./navBar.module.css"
+import * as classes from "./navBar.module.css"
 import NavigationItems from "./navigationItems"
 
 const NavBar = props => (

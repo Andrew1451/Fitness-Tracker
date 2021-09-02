@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
 
-import { server } from './mocks/server.js'
+import { server } from './src/mocks/server'
 beforeAll(() => server.listen({
     onUnhandledRequest: 'error'
 }))

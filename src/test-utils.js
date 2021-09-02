@@ -8,7 +8,7 @@ function render(
   ui,
   {
     preloadedState,
-    store = configureStore({ reducer: rootReducer, preloadedState }),
+    store = configureStore({ reducer: rootReducer, auth: { userId: 'Arnold2'} }),
     ...renderOptions
   } = {}
 ) {
